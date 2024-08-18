@@ -10,6 +10,15 @@ using namespace std;
         void push_back(T element);
         void insert(unsigned int index, T val);
         void remove(unsigned int index);
+        void print(){
+            cout << "{";
+            for(int i = 0 ; i < N ; i++)
+            {
+                cout << *(data[i])<<", ";
+            }
+            cout << "}";
+
+        }
         int size(){
             return N;
         }
@@ -57,11 +66,9 @@ using namespace std;
         data = new T*[N];
         for (int i = 0 ; i < N - 1 ; i++)
         {
-            cout <<"N" << N << endl;
             data[i] = tmp [i];
-            cout << *(data[i]) << endl;       }
+        }
         data[N-1] = &element;
-        cout << *(data[N-1]) << endl;
     }
 
 
@@ -87,17 +94,12 @@ void vector_2<T>::insert(unsigned int index, T val)
 template <class T>
 void vector_2<T>::remove(unsigned int index)
 {
-    T** temp = data;
+    delete data[index];
+    for(int i = index ; i < N - 1 ; i++)
+    {
+        data [i] = data [i+1];
+    }
     N--;
-    data = new T* [N];
-    for (unsigned int i = 0; i < index; i++)
-    {
-        data[i] = temp[i];
-    }
-    for (unsigned int i = index; i < N - 1; i++)
-    {
-        data[i] = temp[i + 1];
-    }
 }
 
 
